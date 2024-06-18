@@ -4,9 +4,15 @@ const path = require("path");
 const app = express();
 const { logger } = require("./middleware/logger");
 const port = process.env.PORT || 3500;
+const errorHandler = require("./middleware/errorHandler");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 
 app.use(logger);
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 
 // app.use("/", express.static(path.join(__dirname, "public"))); //✅
 app.use(express.static("public")); // ✅
@@ -23,6 +29,8 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 not found");
   }
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log("⚙️  Server is running at: http://localhost:%d", port);
