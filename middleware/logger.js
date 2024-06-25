@@ -2,7 +2,6 @@ const { format } = require("date-fns");
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const path = require("path");
-const { log } = require("console");
 const fsPromise = require("fs").promises;
 
 const logEvents = async (message, logFileName) => {
