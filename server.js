@@ -37,6 +37,7 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler);
 
+// db connection
 mongoose.connection.once("open", () => {
   app.listen(port, () => {
     console.log("⚙️  Server is running at: http://localhost:%d", port);
