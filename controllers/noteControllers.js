@@ -2,13 +2,7 @@ const User = require("../models/User");
 const Note = require("../models/Note");
 const asyncHandler = require("express-async-handler");
 
-/**
- * get all the notes:
- *
- * @desc get all notes
- * @route GET / notes
- * @access private
- */
+// get all the notes
 const getAllNotes = asyncHandler(async (req, res) => {
   // Retrieve all notes from the database
   const notes = await Note.find().lean();
@@ -35,14 +29,7 @@ const getAllNotes = asyncHandler(async (req, res) => {
   });
 });
 
-/**
- * create notes:
- *
- * @desc create a note
- * @abstract use the User model ObjectId to create note for the user
- * @route POST/ notes
- * @access private
- */
+// create note
 const createNote = asyncHandler(async (req, res) => {
   // in user you have to sent User's ObjectId
   const { user, title, text } = req.body;
@@ -75,13 +62,7 @@ const createNote = asyncHandler(async (req, res) => {
   }
 });
 
-/**
- * Update a note based on request body:
- * @desc update notes
- * @route GET/ notes
- * @access private
- */
-
+// update the note
 const updateNote = asyncHandler(async (req, res) => {
   const { id, title, text, user, completed } = req.body;
   // confirm data
@@ -121,12 +102,7 @@ const updateNote = asyncHandler(async (req, res) => {
   });
 });
 
-/** delete note from request body
- * @desc delete note
- * @router GET/ notes
- * @access private
- */
-
+// delete the note
 const deleteNote = asyncHandler(async (req, res) => {
   // const note = await Note.findById(req.body.id);
   // const note = await Note.findOneAndDelete({_id: req.body.id});
