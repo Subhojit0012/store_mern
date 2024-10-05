@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useGetUsersQuery } from "./userApiSlice";
 import User from "./User";
 
