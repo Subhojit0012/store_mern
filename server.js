@@ -21,6 +21,7 @@ connectDB();
 app.use(express.static("public")); // ✅
 
 app.use("/", require("./routes/root"));
+app.use("/auth", require("./routes/authRoute"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/notes", require("./routes/noteRoutes"));
 

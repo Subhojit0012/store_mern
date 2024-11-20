@@ -15,7 +15,6 @@ export const notesApiSlice = apiSlice.injectEndpoints({
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      keepUnusedDataFor: 5,
       transformResponse: (responseData) => {
         const loadednotes = responseData.map((note) => {
           note.id = note._id;
@@ -63,7 +62,12 @@ export const notesApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetNotesQuery } = notesApiSlice;
+export const {
+  useGetNotesQuery,
+  useAddNewNoteMutation,
+  useUpdateNoteMutation,
+  useDeleteNoteMutation,
+} = notesApiSlice;
 
 // returns the query result object
 export const selectnotesResult = notesApiSlice.endpoints.getNotes.select();
