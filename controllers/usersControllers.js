@@ -14,10 +14,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
       message: "Users not found!",
     });
   }
-  res.status(200).json({
-    count: users.length,
-    data: users,
-  });
+  res.json(users);
 });
 
 // @desc create new users

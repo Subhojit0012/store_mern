@@ -2,19 +2,18 @@ const User = require("../models/User");
 const Note = require("../models/Note");
 const asyncHandler = require("express-async-handler");
 
-// get all the notes
+//* get all the notes
 const getAllNotes = asyncHandler(async (req, res) => {
-  // Retrieve all notes from the database
   const notes = await Note.find().lean();
 
-  // If no notes are found, return a 404 status with an empty array
+  //! If no notes are found, return a 404 status with an empty array
   if (!notes?.length) {
     return res.status(404).json({
       message: "Notes not found!",
     });
   }
 
-  // Retrieve the user associated with each note and add the username to the note object
+  //* Retrieve the user associated with each note and add the username to the note object
   const noteWithUser = await Promise.all(
     notes.map(async (note) => {
       const user = await User.findById(note.user).lean().exec();
@@ -22,14 +21,10 @@ const getAllNotes = asyncHandler(async (req, res) => {
     })
   );
 
-  // Send the response with notes and associated user's username
-  res.json({
-    count: noteWithUser.length,
-    data: noteWithUser,
-  });
+  res.json(noteWithUser);
 });
 
-// create note
+//* create note
 const createNote = asyncHandler(async (req, res) => {
   // in user you have to sent User's ObjectId
   const { user, title, text } = req.body;
@@ -62,7 +57,7 @@ const createNote = asyncHandler(async (req, res) => {
   }
 });
 
-// update the note
+//* update the note
 const updateNote = asyncHandler(async (req, res) => {
   const { id, title, text, user, completed } = req.body;
   // confirm data
@@ -102,7 +97,7 @@ const updateNote = asyncHandler(async (req, res) => {
   });
 });
 
-// delete the note
+//* delete the note
 const deleteNote = asyncHandler(async (req, res) => {
   // const note = await Note.findById(req.body.id);
   // const note = await Note.findOneAndDelete({_id: req.body.id});
