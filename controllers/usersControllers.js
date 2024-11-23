@@ -14,7 +14,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
       message: "Users not found!",
     });
   }
-  res.json(users);
+  res.json(users).status(200);
 });
 
 // @desc create new users

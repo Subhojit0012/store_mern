@@ -1,11 +1,10 @@
-import React from "react";
 import EditNoteForm from "./EditNoteForm";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectNoteById } from "./notesApiSlice";
-import {selectAllUsers} from "../users/usersApiSlice.js";
+import { selectAllUsers } from "../users/userApiSlice.js";
 
-function EditNote() {
+const EditNote = () => {
   const { id } = useParams();
 
   const note = useSelector((state) => selectNoteById(state, id));
@@ -19,6 +18,6 @@ function EditNote() {
     );
 
   return content;
-}
+};
 
 export default EditNote;
