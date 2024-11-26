@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 const Welcome = () => {
   const { username, isAdmin, isManager } = useAuth();
 
+  console.log(username);
+
   const date = new Date();
   const today = new Intl.DateTimeFormat("en-US", {
     dateStyle: "full",

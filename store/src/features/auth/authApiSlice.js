@@ -19,7 +19,7 @@ const authApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
+          console.log(data); // message: clear cookie
           dispatch(logout());
           setTimeout(() => {
             dispatch(apiSlice.util.resetApiState());
@@ -37,7 +37,7 @@ const authApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
+          console.log(data); // accessToken
           const { accessToken } = data;
           dispatch(setCredentials({ accessToken }));
         } catch (err) {

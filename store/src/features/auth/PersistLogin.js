@@ -22,9 +22,9 @@ const PersistLogin = () => {
       const verifyRefreshToken = async () => {
         console.log("verifying refresh token");
         try {
-          //const response =
+          // const response = 
           await refresh();
-          //const { accessToken } = response.data
+          // const { accessToken } = response.data;
           setTrueSuccess(true);
         } catch (err) {
           console.error(err);
@@ -37,17 +37,19 @@ const PersistLogin = () => {
     return () => (effectRan.current = true);
 
     // eslint-disable-next-line
-  }, []);
+  }, [persist]);
 
   let content;
   if (!persist) {
     // persist: no
     console.log("no persist");
     content = <Outlet />;
+
   } else if (isLoading) {
     //persist: yes, token: no
     console.log("loading");
     content = <p>Loading...</p>;
+
   } else if (isError) {
     //persist: yes, token: no
     console.log("error");
@@ -57,10 +59,12 @@ const PersistLogin = () => {
         <Link to="/login">Please login again</Link>.
       </p>
     );
+
   } else if (isSuccess && trueSuccess) {
     //persist: yes, token: yes
     console.log("success");
     content = <Outlet />;
+
   } else if (token && isUninitialized) {
     //persist: yes, token: yes
     console.log("token and uninit");
