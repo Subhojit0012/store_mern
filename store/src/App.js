@@ -25,9 +25,9 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<PersistLogin />}>
-          {/* <Route
+          <Route
             element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
-          > */}
+          >
             <Route element={<Prefetch />}>
               <Route path="dash" element={<DashLayout />}>
                 <Route index element={<Welcome />} />
@@ -52,7 +52,7 @@ function App() {
               </Route>
               {/* end dash routes */}
             </Route>
-          {/* </Route> */}
+          </Route>
         </Route>
       </Route>
     </Routes>
